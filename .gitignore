@@ -3,7 +3,7 @@
 node_modules
 
 ## JEST ##
-coverage/
+coverage
 
 ## Compiled files ##
 client/dist/bundle.js
