@@ -7,3 +7,7 @@ coverage
 
 ## Compiled files ##
 client/dist/bundle.js
+
+## generated data ##
+*.json
+*.csv
