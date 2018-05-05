@@ -16,6 +16,11 @@
   },
   "author": "Yogita",
   "license": "ISC",
+  "jest": {
+    "watchPathIgnorePatterns": [
+      "<rootDir>/tests/test.json"
+    ]
+  },
   "devDependencies": {
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.2",

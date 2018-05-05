@@ -1,13 +1,6 @@
-const fs = require('fs');
-const { createCsvRestaurantRecord, createCsvPhotoRecord } = require('./generateCSV');
-const createJsonRecord = require('./generateJSON');
-
-const type = process.argv[2];
-const count = process.argv[3] || 0;
-
-const generateData = (writer, encoding, numRecords, createRecord, header, callback) => {
+const generateData = (writer, type, encoding, numRecords, createRecord, header, callback) => {
   let recordsLeft = numRecords;
-  writer.write(`${header}\n`);
+  writer.write(`${header}`);
   function write() {
     let ok = true;
     do {
@@ -25,20 +18,5 @@ const generateData = (writer, encoding, numRecords, createRecord, header, callba
   }
   write();
 };
-
-if (type === 'json' && count !== 0) {
-  generateData(fs.createWriteStream('./database/photoData.json'), 'utf8', count, createJsonRecord, '[', () => {
-    console.log('json file done');
-  });
-} else if (type === 'csv' && count !== 0) {
-  generateData(fs.createWriteStream('./database/restaurantData.csv'), 'utf8', count, createCsvRestaurantRecord, 'name,place_id', () => {
-    console.log('csv restaurant file done. Writing photo file.');
-    generateData(fs.createWriteStream('./database/photoData.csv'), 'utf8', count, createCsvPhotoRecord, 'url,place_id', () => {
-      console.log('done');
-    });
-  });
-} else {
-  console.log('error: no type specified');
-}
 
 module.exports = generateData;
