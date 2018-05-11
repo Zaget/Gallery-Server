@@ -13,9 +13,9 @@ const db = pgp(connection);
 const getPhotos = (req, res) => {
   db.any('SELECT restaurants.name, photos.url FROM restaurants, photos WHERE restaurants.place_id=$1 and photos.place_id=$1', [req.params.id])
     .then((data) => {
-      const restaurantPhotosArray = [];
-      data.forEach(row => restaurantPhotosArray.push(`https://s3-us-west-1.amazonaws.com/zagetphotogallery/${row.url}`));
-      res.send({ photoArray: restaurantPhotosArray, restaurantName: data[0].name, place_id: req.params.id });
+      const photosArray = [];
+      data.forEach(row => photosArray.push(`https://s3-us-west-1.amazonaws.com/zagetphotogallery/${row.url}`));
+      res.send({ photoArray: photosArray, restaurantName: data[0].name, place_id: req.params.id });
     })
     .catch(error => (
       console.log(error)

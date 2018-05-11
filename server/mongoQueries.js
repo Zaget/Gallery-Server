@@ -26,12 +26,12 @@ const getPhotos = (req, res) => {
         res.send({ photoArray: [], restaurantName: '', place_id: -1 });
       }
       let s3String = '';
-      const restaurantPhotosArray = [];
+      const photosArray = [];
       for (let i = 0; i < photos.photos.length; i += 1) {
         s3String = `https://s3-us-west-1.amazonaws.com/zagetphotogallery/${photos.photos[i]}`;
-        restaurantPhotosArray.push(s3String);
+        photosArray.push(s3String);
       }
-      res.send({ photoArray: restaurantPhotosArray, restaurantName: photos.name, place_id: photos.place_id });
+      res.send({ photoArray: photosArray, restaurantName: photos.name, place_id: photos.place_id });
     }
   });
 };
