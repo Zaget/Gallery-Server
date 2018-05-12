@@ -1,6 +1,7 @@
 *.log
 .DS_Store
 node_modules
+newrelic.js
 
 ## JEST ##
 coverage
@@ -11,3 +12,4 @@ client/dist/bundle.js
 ## generated data ##
 *.json
 *.csv
+
