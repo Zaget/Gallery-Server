@@ -8,6 +8,8 @@ coverage
 
 ## Compiled files ##
 client/dist/bundle.js
+client/dist/bundle-server.js
+
 
 ## generated data ##
 *.json
