@@ -1,4 +1,4 @@
-const getPhotos = (req, res) => {
+const getPhotos = (req, res, db) => {
   db.any('SELECT restaurants.name, photos.url FROM restaurants, photos WHERE restaurants.place_id=$1 and photos.place_id=$1', [req.params.id])
     .then((data) => {
       const photosArray = [];
@@ -10,7 +10,7 @@ const getPhotos = (req, res) => {
     ));
 };
 
-const search = (req, res) => {
+const search = (req, res, db) => {
   const recurseFindPlaceId = (searchQuery) => {
     db.any('SELECT restaurants.place_id FROM restaurants WHERE restaurants.name=$1', [searchQuery])
       .then((data) => {
