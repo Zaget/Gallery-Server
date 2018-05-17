@@ -2,7 +2,17 @@ require('newrelic');
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const db = require('./postgresQueries');
+const dbHelpers = require('./postgresQueries');
+const pgp = require('pg-promise')();
+
+const connection = {
+  user: 'steve',
+  host: 'localhost',
+  database: 'zaget-gallery',
+  port: 5432,
+};
+
+const db = pgp(connection);
 
 const app = express();
 const PORT = 3002;
@@ -21,12 +31,12 @@ app.get('/restaurants/:id', (req, res) => {
 });
 
 app.get('/api/restaurants/:id/gallery', (req, res) => {
-  db.getPhotos(req, res);
+  dbHelpers.getPhotos(req, res, db);
 });
 
 // search Functionality in header
 app.get('/:searchValue', (req, res) => {
-  db.search(req, res);
+  dbHelpers.search(req, res, db);
 });
 
 

@@ -1,21 +1,9 @@
-const pgp = require('pg-promise')();
-
-const connection = {
-  user: 'steve',
-  host: 'localhost',
-  database: 'zaget-gallery',
-  port: 5432,
-};
-
-const db = pgp(connection);
-
-
 const getPhotos = (req, res) => {
   db.any('SELECT restaurants.name, photos.url FROM restaurants, photos WHERE restaurants.place_id=$1 and photos.place_id=$1', [req.params.id])
     .then((data) => {
       const photosArray = [];
       data.forEach(row => photosArray.push(`https://s3-us-west-1.amazonaws.com/zagetphotogallery/${row.url}`));
-      res.send({ photoArray: photosArray, restaurantName: data[0].name, place_id: req.params.id });
+      res.send({ photoArray: photosArray, restaurantName: data[0].name, place_id: data.place_id });
     })
     .catch(error => (
       console.log(error)

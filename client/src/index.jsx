@@ -4,10 +4,10 @@ import Lightbox from 'react-image-lightbox';
 // import { Button, Icon } from 'react-materialize';
 import axios from 'axios';
 import Modal from 'react-modal';
-import OpeningPageGalleryView from './openingGrid';
-import FullGalleryOpenGrid from './fullGalleryOpenGrid';
-import Header from './header';
-import Social from './social';
+import OpeningPageGalleryView from './openingGrid.jsx';
+import FullGalleryOpenGrid from './fullGalleryOpenGrid.jsx';
+import Header from './header.jsx';
+import Social from './social.jsx';
 
 class ApateezGallery extends React.Component {
   constructor(props) {
